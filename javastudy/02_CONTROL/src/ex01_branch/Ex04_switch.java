@@ -68,19 +68,22 @@ public class Ex04_switch {
 		
 		// 연습
 		// 점수에 따른 학점
-		int score = 100;
-		String grade;
-		switch (score / 10) {
-		case 10 :
-		case 9 : grade = "A"; break;
-		case 8 : grade = "B"; break;
-		case 7 : grade = "C"; break;
-		case 6 : grade = "D"; break;
-		default: grade = "F"; 
+		// 
+		int score = 105;
+		String grade;		
+		if(score > 100)	{
+			grade = "X";
+		} else {
+			switch (score / 10) {
+			case 10:
+			case 9 : grade = "A"; break;
+			case 8 : grade = "B"; break;
+			case 7 : grade = "C"; break;
+			case 6 : grade = "D"; break;
+			default: grade = "F"; 
+			}
 		}
-		
 		System.out.println(score + "점은 " + grade + "학점입니다");
-		
 		// 연습
 		// 등급(1, 2, 3)에 따른 권한 출력
 		// 1등급 : 쓰기 실행 읽기

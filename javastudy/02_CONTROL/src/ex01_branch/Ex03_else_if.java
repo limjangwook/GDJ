@@ -38,7 +38,7 @@ public class Ex03_else_if {
 		}
 		
 		// 연습
-		// 월데 따른 계절 출력
+		// 월에 따른 계절 출력
 		// 봄    : 3 ~ 5
 		// 여름  : 6 ~ 8
 		// 가을  : 9 ~ 11
@@ -49,9 +49,9 @@ public class Ex03_else_if {
 	
 		if(month<1 || month > 12) {
 			System.out.println("잘못된 월");
-		} else if(month <= 2 ) {
+		} else if(month == 12 || month <= 2 ) {
 			System.out.println("겨울");
-		} else if(month <= 8 ) {
+		} else if(month <= 5 ) {
 			System.out.println("봄");
 		} else if(month <= 8) {
 			System.out.println("여름");
@@ -82,7 +82,7 @@ public class Ex03_else_if {
 		// 79 ~ 70   C
 		// 69 ~ 60   D
 		// 59 ~ 0    F
-		int score = 50;
+		int score = 105;
 		char grade;
 		if (score < 0 || score > 100) {
 			grade = 'X';
