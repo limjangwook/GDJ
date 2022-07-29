@@ -19,4 +19,11 @@
     <fullyQualifiedTypeName name="ex04_method.VendingMachineMain"/>
     <fullyQualifiedTypeName name="ex04_method.vendingMachine"/>
     <fullyQualifiedTypeName name="ex06_method_overload.Calculator"/>
+    <fullyQualifiedTypeName name="ex07_constructor.Computer"/>
+    <fullyQualifiedTypeName name="ex09_this.Student"/>
+    <fullyQualifiedTypeName name="ex10_this.Rectangle"/>
+    <fullyQualifiedTypeName name="ex11_static.MyMathMain"/>
+    <fullyQualifiedTypeName name="ex11_static.MyMath"/>
+    <fullyQualifiedTypeName name="ex01_is_a.Student"/>
+    <fullyQualifiedTypeName name="ex04_has_inherit.Soldier"/>
 </qualifiedTypeNameHistroy>
