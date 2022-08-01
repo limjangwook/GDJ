@@ -11,7 +11,6 @@
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="ex01_field.User"/>
     <fullyQualifiedTypeName name="ex02_field.School"/>
     <fullyQualifiedTypeName name="ex02_field.Student"/>
@@ -26,4 +25,19 @@
     <fullyQualifiedTypeName name="ex11_static.MyMath"/>
     <fullyQualifiedTypeName name="ex01_is_a.Student"/>
     <fullyQualifiedTypeName name="ex04_has_inherit.Soldier"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="prac1.Player"/>
+    <fullyQualifiedTypeName name="ex05_constructor.Student"/>
+    <fullyQualifiedTypeName name="ex06_constructor.Student"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="ex07_override.Espresso"/>
+    <fullyQualifiedTypeName name="ex07_override.Americano"/>
+    <fullyQualifiedTypeName name="ex07_override.CafeLatte"/>
+    <fullyQualifiedTypeName name="ex08_override.Circle"/>
+    <fullyQualifiedTypeName name="ex08_override.Rectangle"/>
+    <fullyQualifiedTypeName name="ex08_override.Square"/>
+    <fullyQualifiedTypeName name="ex08_override.Espresso"/>
+    <fullyQualifiedTypeName name="java.lang.annotation.AnnotationTypeMismatchException"/>
+    <fullyQualifiedTypeName name="ex08_override.Americano"/>
+    <fullyQualifiedTypeName name="quiz02_coffee.Espresso"/>
 </qualifiedTypeNameHistroy>
