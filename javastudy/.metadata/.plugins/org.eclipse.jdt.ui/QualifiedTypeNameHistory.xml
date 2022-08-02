@@ -29,7 +29,6 @@
     <fullyQualifiedTypeName name="prac1.Player"/>
     <fullyQualifiedTypeName name="ex05_constructor.Student"/>
     <fullyQualifiedTypeName name="ex06_constructor.Student"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="ex07_override.Espresso"/>
     <fullyQualifiedTypeName name="ex07_override.Americano"/>
     <fullyQualifiedTypeName name="ex07_override.CafeLatte"/>
@@ -40,4 +39,10 @@
     <fullyQualifiedTypeName name="java.lang.annotation.AnnotationTypeMismatchException"/>
     <fullyQualifiedTypeName name="ex08_override.Americano"/>
     <fullyQualifiedTypeName name="quiz02_coffee.Espresso"/>
+    <fullyQualifiedTypeName name="quiz04_cart.Customer"/>
+    <fullyQualifiedTypeName name="quiz04_cart.Product"/>
+    <fullyQualifiedTypeName name="quiz03_bus.Person"/>
+    <fullyQualifiedTypeName name="ex13_abstract.Circle"/>
+    <fullyQualifiedTypeName name="ex09_upcasting.Student"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>
