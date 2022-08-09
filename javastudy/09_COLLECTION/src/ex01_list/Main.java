@@ -63,7 +63,7 @@ public class Main {
 		
 		// 일반 for문 순회
 		// size() 메소드 호출을 한 번만 진행
-		for(int i =0, length = list.size(); i < length; i++) {
+		for(int i = 0, length = list.size(); i < length; i++) {
 			System.out.println(list.get(i));
 		}
 		
