@@ -25,6 +25,7 @@ public class XMLWriter {
 		// 3. 표준 마크업 언어인 HTML의 확장 버전
 		// 4. 정해진 태그 외 사용자 정의 태그 사용
 		/*
+		 <products>
 		 	<product>
 				<number>100</number>
 				<name>새우깡</name>
@@ -40,6 +41,7 @@ public class XMLWriter {
 				<name>홈런볼</name>
 				<price>3000</price>
 		 	</product>
+		 </products>
 		 */
 		
 		try {
@@ -50,7 +52,10 @@ public class XMLWriter {
 			Document document = builder.newDocument();
 			document.setXmlStandalone(true);
 			
-			// 태그 생성
+			// Document에 products 태그 추가
+			Element products = document.createElement("products");
+			document.appendChild(products);
+			
 			List<String> product1 = Arrays.asList("100", "새우깡", "1500");
 			List<String> product2 = Arrays.asList("101", "양파링", "2000");
 			List<String> product3 = Arrays.asList("102", "홈런볼", "3000");
@@ -66,7 +71,7 @@ public class XMLWriter {
 				Element price = document.createElement("price");
 				price.setTextContent(line.get(2));
 				// 태그 배치
-				document.appendChild(product);
+				products.appendChild(product);
 				product.appendChild(number);
 				product.appendChild(name);
 				product.appendChild(price);
@@ -76,13 +81,14 @@ public class XMLWriter {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty("encoding", "UTF-8");
-			transformer.setOutputProperty("indent", "true");
+			transformer.setOutputProperty("indent", "yes");  // 들여쓰기
+			transformer.setOutputProperty("doctype-public", "yes");
 			
 			Source source = new DOMSource(document);
 			File file = new File("C:\\storage", "product.xml");
-			StreamResult StreamResult = new StreamResult(file);
+			StreamResult result = new StreamResult(file);
 			
-			transformer.transform(source, StreamResult);
+			transformer.transform(source, result);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
