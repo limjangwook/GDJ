@@ -12,7 +12,7 @@
         1) 비고유 인덱스
            CREATE INDEX 인덱스_이름 ON 테이블_이름(칼럼_이름);
         2) 고유 인덱스(칼럼 내용에 중복이 없는 경우)
-           CREATE UNIZUE INDEX 인덱스_이름 ON 테이블_이름(칼럼_이름);
+           CREATE UNIQUE INDEX 인덱스_이름 ON 테이블_이름(칼럼_이름);
 */
 
 -- 인덱스 조회
