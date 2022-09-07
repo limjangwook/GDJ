@@ -31,6 +31,9 @@ public class InsertMain {
 		PreparedStatement ps = null;
 		
 		try {
+			
+			// OracleDriver 클래스 로드
+			// OarcleDriver 클래스가 저장된 ojdbc6.jar 파일을 classpath
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";	// DB마다 url은 달라짐(Oracle XE 버전 기준)
 			String user = "SCOTT";
