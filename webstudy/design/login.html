@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+        .GDA {
+            width: 176px;
+        }
+    </style>
+</head>
+<body>
+    <img alt="GDA" src="../../images/GDA.png">
+    <form method="post">
+        <input type="text" placeholder="아이디" name="ID"><br>
+        <input type="password" placeholder="비밀번호" name="pw" required><br>
+        <button>로그인</button><br>
+        <input type="checkbox" id="logincheck" name="autologin" checked>
+        <label for="logincheck">자동로그인</label>
+        <input type="checkbox" id="passwordcheck" name="passwordSave" checked>
+        <label for="passwordcheck">비밀번호저장</label>
+    </form>
+</body>
+</html>
