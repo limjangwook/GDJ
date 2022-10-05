@@ -172,7 +172,22 @@
         </table>
     </div>
     <script>
-
+        $('#btn5').on('click', function(event){
+            $.ajax({
+                'type': 'GET',
+                'url': 'sfc_web_map.xml',
+                'dataType': 'xml',
+                'success': function(data){
+                    $.each($(data).find('local'), function(i, region){
+                        var tr = $('<tr>');
+                        tr.append('<td>' + $(region).text() + '</td>');
+                        tr.append('<td>' + $(region).attr('desc') + '</td>');
+                        tr.append('<td>' + $(region).attr('ta') + '</td>');
+                        $('#weather').append(tr);
+                    });
+                }
+            });
+        });
     </script>
 
     <!-- 5. JSON 읽기 -->
@@ -216,8 +231,25 @@
     <!-- 6. JSON 읽기 -->
     <div><button id="btn7">클릭</button></div>
     <script>
-
+        $('#btn7').on('click', function(event){
+            $.ajax({
+                'type': 'GET',
+                'url': 'car.json',
+                'dataType': 'json',
+                'success': function(data){
+                    console.log('모델명', data.model);
+                    console.log('제조사', data.maker);
+                    console.log('가격', data.price);
+                    $.each(data.option, function(i, item){
+                        console.log('옵션' + (i + 1), item);
+                    })
+                    console.log('연식', data.info.year);
+                    console.log('할인액', data.info.discount);
+                }
+            });
+        })
     </script>
+
 
     <!-- 7. JSON 읽기 연습 - cctv.json -->
     <!-- 전체 cctv는 몇 대인가? (카메라대수 속성 이용) -->
@@ -226,7 +258,20 @@
         마포구 전체 CCTV 개수 : <span id="cctv_count"></span>대
     </div>
     <script>
-        
+        $('#btn8').on('click', function(event){
+            $.ajax({
+                'type': 'GET',
+                'url': 'cctv.json',
+                'dataType': 'json',
+                'success': function(data){
+                    var cctvCount = 0;
+                    $.each(data, function(i, location){
+                        cctvCount += Number(location.카메라대수);
+                    })
+                    $('#cctv_count').text(cctvCount);
+                }
+            });
+        });
     </script>
 
 </body>
