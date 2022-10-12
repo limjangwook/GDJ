@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    input 타입 버튼은 서브밋이 안되어서 서버에 저장이 안되고 버튼만 생겨서 input 타입을 submit으로 바꿔준다.
+    <form id="frm" action="https://search.naver.com/search.naver">
+        <input type="text" name="query" id="query">
+        <input type="submit" value="네이버검색" id="btn">
+    </form>
+    <script>
+        document.getElementById('btn').onclick = function(event){
+            alert('검색어는 ' + document.getElementById('querry').value + '입니다.');
+        }
+    </script>
+
+
+</body>
+</html>
