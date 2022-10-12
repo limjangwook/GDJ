@@ -1,21 +1,31 @@
-package ex04;
+package ex04_redirect;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/RedirectServlet1")
-public class RedirectServlet1 extends HttpServlet {
+@WebServlet("/RedirectServlet2")
+public class RedirectServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// redirect
-		response.sendRedirect("/01_Servlet/RedirectServlet2");		
+		
+		// 요청 파라미터 a 확인
+		String a = request.getParameter("a");
+		
+		// 응답
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.println("<h1>Hello World</h1>");
+		out.println("<h1>파라미터 a= " + a + "</h1>");
+		out.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,4 @@
-package ex06;
+package ex07_naver_api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -114,7 +114,6 @@ public class MovieXMLServlet extends HttpServlet {
 		 PrintWriter out = response.getWriter();
 	     out.println(sb.toString());
 	     out.close();
-		
 		
 	}
 

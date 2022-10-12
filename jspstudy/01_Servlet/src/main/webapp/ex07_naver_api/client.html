@@ -118,6 +118,7 @@
 			height: 200px;
 			border: 1px solid silver;
 			outline: 0;
+			font-size: 24px;
 		}
 		.source_area textarea:focus, .target_area textarea:focus {
 			border: 1px solid skyblue;
@@ -136,8 +137,8 @@
 				<textarea id="text"></textarea>			
 			</div>
 		</div>
-		<div class="tranlate_btn_area" id="translate_btn">
-			<button>&gt;&gt;</button>
+		<div class="tranlate_btn_area">
+			<button id="translate_btn">&gt;&gt;</button>
 		</div>
 		<div class="target_area">
 			<div>
@@ -171,6 +172,25 @@
 		}
 		
 		fn_selectLang();
+	
+		// 번역
+		$('#translate_btn').on('click', function(event){
+			$.ajax({
+				/* 요청 */
+				type: 'GET',
+				url: '/01_Servlet/PapagoServlet',
+				data: 'source=' + $('#source').val() + '&target=' + $('#target').val() + '&text=' + $('#text').val(),
+				/* 응답 */
+				dataType: 'json',
+				success: function(resData){
+					$('#translatedText').val(resData.message.result.translatedText);
+				},
+				error: function(jqXHR){
+					console.log('status : ' + jqXHR.status);
+					console.log('responseText : ' + jqXHR.responseText);
+				}
+			});
+		});
 		
 	</script>
 
