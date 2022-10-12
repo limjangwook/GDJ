@@ -1,9 +1,22 @@
 
 
 document.getElementById('btn_signin').onclick = function(event){
+    var id = document.getElementById('id');
     var pw = document.getElementById('pw');
+    
+    if(id.value.length < 4) {
+        alert('아이디는 4자 이상입니다.');
+        event.preventDefault();
+        return;
+    }
+
     if(pw.value == '') {
         alert('비밀번호를 입력하세요.');
+        event.preventDefault();
+        return;
+    }
+    if(pw.value.length < 4) {
+        alert('비밀먼호는 4글자 이상입니다.')
         event.preventDefault();
         return;
     }
