@@ -9,5 +9,5 @@ public interface NaverCaptchaService {
 	public String getCaptchaKey();
 	public Map<String, String> getCaptchaImage(HttpServletRequest request, String key);
 	public void refreshCaptcha(HttpServletRequest request, HttpServletResponse response);
-	public void validateUserInput(HttpServletRequest request);
+	public boolean validateUserInput(HttpServletRequest request);
 }

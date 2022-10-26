@@ -120,9 +120,10 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 				while((readByte = in.read(b)) != -1) {
 					out.write(b, 0, readByte);
 				}
-				// login.jsp로 전달할 데이터(캡차이미지 경로 + 파일명)
+				// login.jsp로 전달할 데이터(캡차이미지 경로 + 파일명 + 캡차키)
 				map.put("dirname", dirname);
 				map.put("filename", filename);
+				map.put("key", key);
 				// 자원 반납
 				out.close();
 				in.close();
@@ -163,7 +164,8 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 		/*
 			{
 				"dirname": "ncaptcah",
-				"filename": "11111111111.jpg
+				"filename": "11111111111.jpg,
+				"key": "dlwldnQKrktkfl"
 			}
 		*/
 		String key = getCaptchaKey();
@@ -182,8 +184,59 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 	}
 
 	@Override
-	public void validateUserInput(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+	public boolean validateUserInput(HttpServletRequest request) {
+		
+		// 요청 파라미터(캡차키 + 사용자 입력값)
+		String key = request.getParameter("key");
+		String value = request.getParameter("value");
+		
+		// 반환할 값
+		boolean result = false;
+		
+		// apiURL
+		String apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=1&key=" + key + "&value=" + value;
+		
+		try {
+			
+			// apiURL 접속
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			
+			// 요청 메소드(HTTP 메소드)
+			con.setRequestMethod("GET");  // 대문자로 작성할 것
+			
+			// 요청 헤더 : 클라이언트 아이디, 클라이언트 시크릿
+			con.setRequestProperty("X-Naver-Client-Id", CLIENT_ID);
+			con.setRequestProperty("X-Naver-Client-Secret", CLIENT_SECRET);
+			
+			// 입력 스트림 선택 및 생성(네이버 API서버의 정보를 읽기 위함)
+			BufferedReader reader = null;
+			if(con.getResponseCode() == 200) {  // 200 : HttpURLConnection.HTTP_OK
+				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {
+				reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			
+			// 네이버 API서버가 보낸 데이터 저장
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+			
+			// 네이버 API서버가 보낸 데이터 확인 및 반환
+			JSONObject obj = new JSONObject(sb.toString());
+			result = obj.getBoolean("result");
+			
+			// 자원 반납
+			reader.close();
+			con.disconnect();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 
 	}
 
