@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet("/Prac02B")
+
+
 public class Prac02B extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// 요청
 		request.setCharacterEncoding("UTF-8");
 		
@@ -27,6 +31,7 @@ public class Prac02B extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<h1>이름 : " + name + ", 나이 : " + age + "살</h1>");
 		out.close();
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

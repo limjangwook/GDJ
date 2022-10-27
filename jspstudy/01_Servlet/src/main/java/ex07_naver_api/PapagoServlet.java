@@ -28,8 +28,8 @@ public class PapagoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 클라이언트 아이디, 시크릿
-		String clientId = "hH2OXbYPtntBQJfT0oQF";
-		String clientSecret = "epWavnnFZ9";
+		String clientId = "ZuA2Hxw8DnfFAdWjRSk4";
+		String clientSecret = "oaR8PF5cnk";
 		
 		// 요청 파라미터(원본언어, 목적언어, 번역할텍스트)
 		String source = request.getParameter("source");

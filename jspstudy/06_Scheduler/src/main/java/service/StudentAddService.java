@@ -60,8 +60,8 @@ public class StudentAddService implements StudentService {
 		out.close();
 		
 		return null;  // Service를 통해서 직접 응답했기 때문에 컨트롤러로 null을 반환
-					  // 컨트롤러가 null을 반환 받으려면 리다이렉트/포워드 모두 수행하지 않음
-
+		              // 컨트롤러가 null을 반환받으면 리다이렉트/포워드 모두 수행하지 않음
+		
 	}
 
 }

@@ -16,23 +16,22 @@ import service.BoardModifyService;
 import service.BoardRemoveService;
 import service.BoardService;
 
-
 @WebServlet("*.do")
 
 public class BoardController extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// 요청 / 응답 인코딩
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
 		// 요청 확인
-		String requsetURI = request.getRequestURI();
+		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String urlMapping = requsetURI.substring(contextPath.length() + 1);
+		String urlMapping = requestURI.substring(contextPath.length() + 1);
 		
 		// BoardService 선언
 		BoardService service = null;
@@ -88,7 +87,7 @@ public class BoardController extends HttpServlet {
 		}
 		
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

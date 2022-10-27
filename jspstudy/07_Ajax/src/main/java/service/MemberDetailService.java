@@ -29,14 +29,15 @@ public class MemberDetailService implements MemberService {
 			{
 				"exists": true,
 				"member": {
-						"memberNo": 1,
-						"id": "use1",
-						"name": "회원1",
-						"gender":"F",
-						"grade": "gold",
-						"address": "jeju"
+					"memberNo": 3,
+					"id": "user3",
+					"name": "회원3",
+					"gender": "F",
+					"grade": "bronze",
+					"address": "yeosu"
 				}
 			}
+			
 			조회된 회원이 없는 경우
 			{
 				"exists": false
@@ -55,7 +56,7 @@ public class MemberDetailService implements MemberService {
 		PrintWriter out = response.getWriter();
 		out.println(obj.toString());
 		out.close();
-
+		
 	}
 
 }

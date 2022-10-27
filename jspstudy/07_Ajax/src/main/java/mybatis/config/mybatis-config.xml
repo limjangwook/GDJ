@@ -13,7 +13,7 @@
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-
+	
 	<!-- domain.Student to Student -->
 	<typeAliases>
 		<typeAlias type="domain.Member" alias="Member" />

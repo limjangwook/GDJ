@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="<%=request.getContextPath()%>/member/loginPage.do">로그인하하러가기</a>
+	<a href="<%=request.getContextPath()%>/member/loginPage.do">로그인하러가기</a>
 </body>
 </html>

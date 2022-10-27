@@ -39,4 +39,15 @@ public class MemberDao {
 		return login;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

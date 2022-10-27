@@ -23,15 +23,17 @@ public class StudentFindService implements StudentService {
 		map.put("begin", begin);
 		map.put("end", end);
 		
+		// StudentDao dao 생성
 		StudentDao dao = StudentDao.getInstance();
 		
 		// request에 필요한 정보 저장하기
 		request.setAttribute("students", dao.selectStudentsByAve(map));
 		request.setAttribute("count", dao.selectStudentsByAveCount(map));
 		request.setAttribute("average", dao.selectStudentsByAveAverage(map));
-
+		
 		// student/list.jsp로 포워딩
 		return new ActionForward("/student/list.jsp", false);
+		
 	}
 
 }

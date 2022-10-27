@@ -17,16 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 @WebServlet("/MovieXMLServlet")
+
+
 public class MovieXMLServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 클라이언트 아이디, 시크릿
-		String clientId = "hH2OXbYPtntBQJfT0oQF";
-		String clientSecret = "epWavnnFZ9";
+		String clientId = "ZuA2Hxw8DnfFAdWjRSk4";
+		String clientSecret = "oaR8PF5cnk";
 		
 		// 요청 파라미터(검색어, 검색결과수)
 		request.setCharacterEncoding("UTF-8");
@@ -50,7 +52,7 @@ public class MovieXMLServlet extends HttpServlet {
 		try {
 			url = new URL(apiURL);
 			con = (HttpURLConnection)url.openConnection();
-		} catch(MalformedURLException e) {
+		} catch (MalformedURLException e) {
 			response.setContentType("text/plain; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("API URL이 잘못되었습니다.");
@@ -69,7 +71,6 @@ public class MovieXMLServlet extends HttpServlet {
 			// 요청 헤더
 			con.setRequestProperty("X-Naver-Client-Id", clientId);
 			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-			
 		} catch (IOException e) {
 			response.setContentType("text/plain; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -85,7 +86,6 @@ public class MovieXMLServlet extends HttpServlet {
 				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			} else {
 				reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-				
 			}
 		} catch(IOException e) {
 			response.setContentType("text/plain; charset=UTF-8");
@@ -111,9 +111,9 @@ public class MovieXMLServlet extends HttpServlet {
 		// client.html로 API 응답 결과 보내기
 		response.setContentType("application/xml; charset=UTF-8");
 		
-		 PrintWriter out = response.getWriter();
-	     out.println(sb.toString());
-	     out.close();
+		PrintWriter out = response.getWriter();
+		out.println(sb.toString());
+		out.close();
 		
 	}
 

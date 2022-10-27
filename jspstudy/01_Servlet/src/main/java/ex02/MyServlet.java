@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/my")  // @WebServlet({"/my", "/me"}) 처럼 2개 이상의 URL Mapping을 지정할 수 있음
+
 public class MyServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
        
     public MyServlet() {
@@ -19,9 +21,10 @@ public class MyServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// 1. 요청
-		// 	  1) 클라이언트 -> 서버로 보내는 요청 또는 데이터
-		//	  2) HttpServletRequest request 객체가 처리 (Tomcat이 있어야 사용 가능)
+		//    1) 클라이언트 -> 서버로 보내는 요청 또는 데이터
+		//    2) HttpServletRequest request 객체가 처리 (Tomcat이 있어야 사용 가능)
 		
 		// 1) 요청에 포함된 한글 처리(문자셋 : UTF-8)
 		request.setCharacterEncoding("UTF-8");
@@ -35,16 +38,17 @@ public class MyServlet extends HttpServlet {
 		// null 처리
 		int age = 0;
 		if(strAge != null) {
-			age = Integer.parseInt(strAge);			
+			age = Integer.parseInt(strAge);
 		}
+		
 		
 		// 2. 응답
 		//    1) 서버 -> 클라이언트로 보내는 응답
-		//    2) HttpServletResponse 객체가 처리 (Tomcat이 있어야 사용 가능)
+		//    2) HttpServletResponse response 객체가 처리 (Tomcat이 있어야 사용 가능)
 		
 		// 1) 사용자에게 전달할 데이터의 형식을 HTML 문서로 결정한다.
 		//    MIME-TYPE을 활용
-		//	  (1) HTML : text/html
+		//    (1) HTML : text/html
 		//    (2) CSS  : text/css
 		//    (3) JS   : text/javascript
 		//    (4) XML  : application/xml
@@ -59,13 +63,13 @@ public class MyServlet extends HttpServlet {
 		
 		// 3) 응답 스트림 생성
 		//    (1) 문자 출력 스트림(*Writer)을 생성
-		//    (2) response 객체로 부터 PrintWriter 객체를 얻을 수 있음
-		//		  - IOException 예외 처리가 필요한데 이미 처리되어 있음
-		//        - write() 메소드보다는 print()/println() 메소드를 사용하는 것을 권장
+		//    (2) response 객체로부터 PrintWriter 객체를 얻을 수 있음
+		//        - IOException 예외 처리가 필요한데 이미 처리되어 있음
+		//        - write() 메소드보다는 print()/println() 메소드를 사용하는 것이 권장
 		PrintWriter out = response.getWriter();
 		
 		// 4) 응답 만들기 (HTML 문서 만들기)
-		out.println("<html lang=\"ko\"");
+		out.println("<html lang=\"ko\">");
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\">");
 		out.println("<title>");
@@ -73,22 +77,21 @@ public class MyServlet extends HttpServlet {
 		out.println("</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>안녕하세요. " + name + "님 반갑습니다 ★</h1>");
+		out.println("<h1>안녕하세요. " + name + "님 반갑습니다 ♥</h1>");
 		if(age >= 20) {
-			out.println("<h1>귀하는 " + age + "살이므로 입장이 가능힙니다.</h1>");			
+			out.println("<h1>귀하는 " + age + "살이므로 입장이 가능합니다.</h1>");
 		} else {
-			out.println("<h1>" + age + "살? 애들은 가라!</h1>");
+			out.println("<h1>" + age + "살? 애들은 다음에</h1>");
 		}
 		out.println("</body>");
 		out.println("</html>");
 		
-		out.flush();  // 츨력 스트림에 남아있는 모든 데이터 내보내기 (만약을 위해서)
+		out.flush();  // 출력 스트림에 남아 있는 모든 데이터 내보내기 (만약을 위해서)
 		out.close();
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doGet(request, response);
 	}
 

@@ -10,5 +10,4 @@ public interface MemberService {
 	public ActionForward logout(HttpServletRequest request, HttpServletResponse response);
 	public void register(HttpServletRequest request, HttpServletResponse response);
 	public void cancel(HttpServletRequest request, HttpServletResponse response);
-	
 }

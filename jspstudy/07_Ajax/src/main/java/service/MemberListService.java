@@ -21,34 +21,34 @@ public class MemberListService implements MemberService {
 		/*
 			{
 				"count": 3,
-				"member": [
+				"members": [
+					{
+						"memberNo": 3,
+						"id": "user3",
+						"name": "회원3",
+						"gender": "F",
+						"grade": "bronze",
+						"address": "yeosu"
+					},
+					{
+						"memberNo": 2,
+						"id": "user2",
+						"name": "회원2",
+						"gender": "M",
+						"grade": "silver",
+						"address": "seoul"
+					},
 					{
 						"memberNo": 1,
-						"id": "use1",
+						"id": "user1",
 						"name": "회원1",
-						"gender":"F",
+						"gender": "F",
 						"grade": "gold",
 						"address": "jeju"
 					}
-					{
-						"memberNo": 2,
-						"id": "use2",
-						"name": "회원2",
-						"gender":"M",
-						"grade": "silver",
-						"address": "seoul"
-					}
-					{
-						"memberNo": 3,
-						"id": "use3",
-						"name": "회원3",
-						"gender":"F",
-						"grade": "bronze",
-						"address": "yeosu"
-					}
 				]
 			}
-		 */
+		*/
 		JSONObject obj = new JSONObject();
 		obj.put("count", MemberDao.getInstance().selectAllMembersCount());
 		obj.put("members", MemberDao.getInstance().selectAllMembers());
@@ -57,7 +57,7 @@ public class MemberListService implements MemberService {
 		PrintWriter out = response.getWriter();
 		out.println(obj.toString());  // JSON 문자열 응답
 		out.close();
-
+		
 	}
 
 }

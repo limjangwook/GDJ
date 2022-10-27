@@ -62,6 +62,7 @@
 </style>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
+
 	$(document).ready(function(){
 		
 		$('#btn_write').click(function(event){
@@ -69,6 +70,7 @@
 		});
 		
 	});
+
 </script>
 </head>
 <body>

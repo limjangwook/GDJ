@@ -29,7 +29,7 @@ public class BoardDao {
 	private BoardDao() {
 		try {
 			// DataSource 객체 생성
-			// context.html에서 name="jdbc/oracle11g"인 Resource를 찾아서 생성(JNDI)
+			// context.xml에서 name="jdbc/oracle11g"인 Resource를 찾아서 생성(JNDI)
 			Context ctx = new InitialContext();
 			Context envCtx = (Context)ctx.lookup("java:comp/env");
 			dataSource = (DataSource)envCtx.lookup("jdbc/oracle11g");
@@ -63,13 +63,14 @@ public class BoardDao {
 			sql = "SELECT BOARD_NO, TITLE, CONTENT, CREATE_DATE FROM BOARD ORDER BY BOARD_NO DESC";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();  // SELECT문은 executeQuery() 사용
-			while(rs.next()) { // 목록보기는 while문
+			while(rs.next()) {  // 목록보기는 while문
+				// Board board는 한 개의 게시글을 의미함
 				Board board = new Board();
 				board.setBoard_no( rs.getInt(1) );      // rs.getInt("BOARD_NO")
-				board.setTitle( rs.getString(2)) ;      // rs.getString("TITLE")
+				board.setTitle( rs.getString(2) );      // rs.getString("TITLE")
 				board.setContent( rs.getString(3) );    // rs.getString("CONTENT")
 				board.setCreate_date( rs.getDate(4) );  // rs.getDate("CREATE_DATE")
-				// 가져온 게시글을 리스테에 추가함
+				// 가져온 게시글을 리스트에 추가함
 				boards.add(board);
 			}
 		} catch (Exception e) {
@@ -77,7 +78,6 @@ public class BoardDao {
 		} finally {
 			close(con, ps, rs);
 		}
-	
 		return boards;
 	}
 	
@@ -90,10 +90,10 @@ public class BoardDao {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, board_no);  // 1번째 물음표(?)에 board_no 전달하기
 			rs = ps.executeQuery();  // SELECT문은 executeQuery() 사용
-			if(rs.next() ) {		 // 상세보기는 if문
-				board =new Board();
+			if(rs.next()) {          // 상세보기는 if문
+				board = new Board();
 				board.setBoard_no( rs.getInt(1) );      // rs.getInt("BOARD_NO")
-				board.setTitle( rs.getString(2)) ;      // rs.getString("TITLE")
+				board.setTitle( rs.getString(2) );      // rs.getString("TITLE")
 				board.setContent( rs.getString(3) );    // rs.getString("CONTENT")
 				board.setCreate_date( rs.getDate(4) );  // rs.getDate("CREATE_DATE")
 			}
@@ -122,7 +122,7 @@ public class BoardDao {
 		}
 		return result;
 	}
-		
+	
 	// 5. 게시글 수정
 	public int updateBoard(Board board) {
 		int result = 0;
@@ -137,7 +137,7 @@ public class BoardDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(con, ps, rs);
+			close(con, ps, null);
 		}
 		return result;
 	}
@@ -158,5 +158,5 @@ public class BoardDao {
 		}
 		return result;
 	}
-
+	
 }

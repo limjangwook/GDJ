@@ -9,6 +9,7 @@
 <title>게시글 작성</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
+
 	$(document).ready(function(){
 		
 		$('#frm_write').submit(function(event){
@@ -25,6 +26,7 @@
 		});
 		
 	});
+
 </script>
 </head>
 <body>

@@ -26,7 +26,6 @@ public class DownloadServlet extends HttpServlet {
 		// 요청 파라미터
 		request.setCharacterEncoding("UTF-8");
 		String filename = request.getParameter("filename");
-		System.out.println(filename);
 		
 		// 다운로드할 파일 경로
 		String realPath = getServletContext().getRealPath("upload");
@@ -59,4 +58,5 @@ public class DownloadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

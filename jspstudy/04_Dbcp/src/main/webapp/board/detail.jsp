@@ -9,7 +9,7 @@
 <title>${board.board_no}번 게시글</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
-	
+
 	$(document).ready(function(){
 		
 		$('#btn_edit').click(function(event){
@@ -27,8 +27,9 @@
 		$('#btn_list').click(function(event){
 			location.href = '${contextPath}/board/list.do';
 		});
+		
 	});
-	
+
 </script>
 </head>
 <body>

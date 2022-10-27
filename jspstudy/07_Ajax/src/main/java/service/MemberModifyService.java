@@ -39,17 +39,17 @@ public class MemberModifyService implements MemberService {
 			// 수정
 			result = MemberDao.getInstance().updateMember(member);
 			
-			// 성공 응답 데이터 타입 : JSON
+			// 응답 데이터 타입 : JSON
 			response.setContentType("application/json; charset=UTF-8");
 			
-			// 응답 데이터 
+			// 응답 데이터
 			/*
 				수정 성공 응답 데이터
 				{"isSuccess": true}
 				
 				수정 실패 응답 데이터
 				{"isSuccess": false}
-			 */
+			*/
 			JSONObject obj = new JSONObject();
 			obj.put("isSuccess", result > 0);
 			
@@ -69,6 +69,7 @@ public class MemberModifyService implements MemberService {
 			PrintWriter out = response.getWriter();
 			out.println("회원 정보가 수정되지 않았습니다.\n입력 정보를 확인하세요.");
 			out.close();
+			
 		}
 
 	}

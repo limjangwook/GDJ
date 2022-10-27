@@ -43,12 +43,12 @@ public class MemberDao {
 		return members;
 	}
 	
-	// 2.회원 수
-	public int selectAllMembersCount () {
-	   SqlSession ss=factory.openSession();
-	   int count = ss.selectOne(mapper+"selectAllMembersCount");
-	   ss.close();
-	   return count;
+	// 2. 회원수
+	public int selectAllMembersCount() {
+		SqlSession ss = factory.openSession();
+		int count = ss.selectOne(mapper + "selectAllMembersCount");
+		ss.close();
+		return count;
 	}
 	
 	// 3. 회원상세
@@ -81,7 +81,7 @@ public class MemberDao {
 		return result;
 	}
 	
-	// 6. 회원 삭제
+	// 6. 회원삭제
 	public int deleteMember(int memberNo) {
 		SqlSession ss = factory.openSession(false);
 		int result = ss.delete(mapper + "deleteMember", memberNo);

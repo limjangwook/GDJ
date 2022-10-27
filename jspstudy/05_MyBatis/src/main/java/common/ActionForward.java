@@ -3,8 +3,8 @@ package common;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class ActionForward {
 	private String view;
 	private boolean isRedirect;

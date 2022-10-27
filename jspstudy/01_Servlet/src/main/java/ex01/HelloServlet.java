@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class HelloServlet extends HttpServlet {  // Servlet은 HttpServlet을 상속 받으면 된다.
 
+	private static final long serialVersionUID = 1L;
 	
 	/*
     	1. 생성자
@@ -82,7 +83,7 @@ public class HelloServlet extends HttpServlet {  // Servlet은 HttpServlet을 �
 						'url': 'http://localhost:9090/01_Servlet/HelloServlet'
 					});
 				(2) <a href="http://localhost:9090/01_Servlet/HelloServlet">링크</a>
-				(3) <form method="GET" action="http://localhost:9090/01_Servlet/HelloServlet">  또는  <form>
+				(3) <form method="GET" action="http://localhost:9090/01_Servlet/HelloServlet">  또는  <form action="http://localhost:9090/01_Servlet/HelloServlet">
 				(4) location.href='http://localhost:9090/01_Servlet/HelloServlet'
 				    open('http://localhost:9090/01_Servlet/HelloServlet')
 	*/

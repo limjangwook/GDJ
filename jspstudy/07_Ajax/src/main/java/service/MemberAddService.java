@@ -34,6 +34,7 @@ public class MemberAddService implements MemberService {
 		// 삽입
 		int result = 0;
 		try {
+			
 			result = MemberDao.getInstance().insertMember(member);
 			
 			// 응답 데이터 형식 (JSON)
@@ -41,16 +42,16 @@ public class MemberAddService implements MemberService {
 			
 			// 응답 데이터
 			/*
-			삽입 성공
-			{
-				"isSuccess": true
-			}
-			
-			삽입 실패
-			{
-				"isSuccess": false
-			}
-			 */
+				삽입 성공
+				{
+					"isSuccess": true
+				}
+				
+				삽입 실패
+				{
+					"isSuccess": false
+				}
+			*/
 			JSONObject obj = new JSONObject();
 			obj.put("isSuccess", result > 0);
 			
@@ -58,20 +59,22 @@ public class MemberAddService implements MemberService {
 			PrintWriter out = response.getWriter();
 			out.println(obj.toString());
 			out.close();
+			
+			
 		} catch (Exception e) {
 			
 			// 예외 처리 응답 ($.ajax()의 error 프로퍼티로 응답)
 			
-			// 응답 데이터 형식 : 일반 텍스트
+			// 예외 처리 응답 데이터 형식 : 일반 텍스트
 			response.setContentType("text/plain; charset=UTF-8");
 			
-			// 응답
+			// 예외 처리 응답
 			PrintWriter out = response.getWriter();
-			out.println("신규 회원 등록이 실패했습니다.\n입력 데이터를 확인하세요");
+			out.println("신규 회원 등록이 실패했습니다.\n입력 데이터를 확인하세요.");
 			out.close();
+			
 		}
 		
-
 	}
 
 }

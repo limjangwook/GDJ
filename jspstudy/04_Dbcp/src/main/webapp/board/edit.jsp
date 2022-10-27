@@ -9,19 +9,10 @@
 <title>${board.board_no}번 게시글 수정</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
-	
+
 	$(document).ready(function(){
 		
-		$('#frm_edit').submit(function(){
-			// 제목, 내용 모두 변경이 없는 경우
-			// 기존 제목, 내용   : ${board.title}, ${board.content}
-			// 입력한 제목, 내용 : $('#title').val(), $('#content').val()
-			if('${board.title}' == $('#title').val() && '${board.content}' == $('#content').val()){
-				alert('변경된 내용이 없습니다.');
-				event.preventDefault();
-				return;
-			}
-			
+		$('#frm_edit').submit(function(event){
 			// 제목이 비어 있는 경우
 			if($('#title').val() == ''){
 				alert('제목은 필수입니다.');
@@ -33,13 +24,14 @@
 		$('#btn_list').click(function(event){
 			location.href = '${contextPath}/board/list.do';
 		});
+		
 	});
-	
+
 </script>
 </head>
 <body>
 
-	<h1>게시글 수정 화면</h1>
+	<h1>게시글 편집 화면</h1>
 	<div>
 		<form method="POST" action="${contextPath}/board/modify.do" id="frm_edit">
 			<div>

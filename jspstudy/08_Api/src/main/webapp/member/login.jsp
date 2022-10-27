@@ -28,9 +28,9 @@
 </script>
 </head>
 <body>
-	
+
 	<div class="wrap">
-		
+	
 		<h1>로그인</h1>
 		<form action="${contextPath}/member/validateCaptcha.do" method="post">
 			<div>
@@ -58,6 +58,8 @@
 				<button>로그인</button>
 			</div>
 		</form>
+	
 	</div>
+
 </body>
 </html>

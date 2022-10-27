@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 		if(login != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", login);
-			return new ActionForward(request.getContextPath(), true);
+			return new ActionForward(request.getContextPath(), true);  // 리다이렉트
 		} else {
 			try {
 				PrintWriter out = response.getWriter();
@@ -51,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return new ActionForward(request.getContextPath(), true);
-
+		
 	}
 
 	@Override

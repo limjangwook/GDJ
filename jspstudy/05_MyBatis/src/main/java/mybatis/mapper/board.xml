@@ -18,18 +18,18 @@
 	<!--
 		1. 게시글 목록
 			1) parameterType : 없음
-			2) resultType : 목록보기, 상세보기 모두 domain 패키지의 Board를 반환	
+			2) resultType    : 목록보기, 상세보기 모두 domain 패키지의 Board를 반환	
 	-->
 	<select id="selectAllBoards" resultType="Board">
 		SELECT BOARD_NO, TITLE, CONTENT, CREATE_DATE
 		  FROM BOARD
 		 ORDER BY BOARD_NO DESC
 	</select>
-	
+
 	<!--
 		2. 게시글 상세 보기
-			1) parmeterType : int boardNo
-			2) resultType   : 목록보기, 상세보기 모두 domain 패키지의 Board를 반환
+			1) parameterType : int boardNo
+			2) resultType    : 목록보기, 상세보기 모두 domain 패키지의 Board를 반환
 	-->
 	<select id="selectBoardByNo" parameterType="int" resultType="Board">
 		SELECT BOARD_NO, TITLE, CONTENT, CREATE_DATE
@@ -52,14 +52,14 @@
 	<!--
 		4. 게시글 삭제
 			1) parameterType : int boardNo
-			2) resulType     : 작성하면 안 됩니다. 자동으로 int 처리된다.
+			2) resultType    : 작성하면 안 됩니다. 자동으로 int로 처리된다.
 	-->
 	<delete id="deleteBoard" parameterType="int">
 		DELETE
 		  FROM BOARD
 		 WHERE BOARD_NO = #{boardNo}
 	</delete>
-	
+
 	<!--
 		5. 게시글 수정
 			1) parameterType : Board board
