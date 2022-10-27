@@ -11,32 +11,37 @@
 <script>
 	$(document).ready(function(){
 		
-		$('#btn_add').click(function(event){
-			location.href = '${contextPath}/board/add.do';
+		$('#btn_write').click(function(event){
+			location.href = '${contextPath}/board/write.do';
 		});
-		
+	});
 </script>
 </head>
 <body>
-	<div>
-		<input type="button" value="새글 작성" id="btn_add">
-	</div>
 	<div>
 		<table border="1">
 			<thead>
 				<tr>
 					<td>순번</td>
 					<td>작성자</td>
-					<td href="${contextPath}/board/detail.do?boardNo=${b.boardNo}">제목</td>
+					<td>제목</td>
 					<td>작성일</td>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${boards}" var="board">
 					<tr>
-						
+						<td>${board.boardNo}</td>
+						<td>${board.name}</td>
+						<td><a href="${contextPath}/board/detail.do?board_no=${board.boardNo}">${board.title}</a></td>
+						<td>${board.createDate}</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<div>
+						<input type="button" value="새글 작성" id="btn_write">
+					</div>
+				</tr>
 			</tbody>
 			
 		</table>

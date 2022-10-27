@@ -12,10 +12,8 @@ import domain.Board;
 
 public class BoardDao {
 
-	// field - SqlSessionFactory
 	private SqlSessionFactory factory;
 	
-	// singleton pattern
 	private static BoardDao dao = new BoardDao();
 	private BoardDao() {
 		try {
@@ -34,24 +32,24 @@ public class BoardDao {
 	
 	// 1. 게시글 목록
 	public List<Board> selectAllBoards(){
-		SqlSession ss = factory.openSession();  // SELECT(커밋이 필요 없는 경우)
-		List<Board> boards = ss.selectList("mybatis.mapper.board.selectAllBoards");  // mybatis.mapper.board 매퍼의 selectAllBoards 아이디를 가진 쿼리문 실행
-		ss.close();  // 메소드마다 닫아 주어야 한다.
+		SqlSession ss = factory.openSession();  
+		List<Board> boards = ss.selectList("mybatis.mapper.board.selectAllBoards");  
+		ss.close();
 		return boards;
 	}
 	
 	// 2. 게시글 상세 보기
 	public Board selectBoardByNo(int boardNo) {
 		SqlSession ss = factory.openSession();
-		Board board = ss.selectOne("mybatis.mapper.board.selectBoardByNo", boardNo);  // boardNo를 파라미터로 전달
+		Board board = ss.selectOne("mybatis.mapper.board.selectBoardByNo", boardNo);  
 		ss.close();
 		return board;
 	}
 	
 	// 3. 게시글 작성
 	public int insertBoard(Board board) {
-		SqlSession ss = factory.openSession(false);  // INSERT(커밋이 필요한 경우)
-		int result = ss.insert("mybatis.mapper.board.insertBoard", board);  // board를 파라미터로 전달
+		SqlSession ss = factory.openSession(false);  
+		int result = ss.insert("mybatis.mapper.board.insertBoard", board);  
 		if(result > 0) {
 			ss.commit();
 		}
@@ -61,7 +59,7 @@ public class BoardDao {
 	
 	// 4. 게시글 삭제
 	public int deleteBoard(int boardNo) {
-		SqlSession ss = factory.openSession(false);  // DELETE(커밋이 필요한 경우)
+		SqlSession ss = factory.openSession(false);  
 		int result = ss.delete("mybatis.mapper.board.deleteBoard", boardNo);
 		if(result > 0) {
 			ss.commit();

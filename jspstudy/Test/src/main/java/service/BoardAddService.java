@@ -37,7 +37,7 @@ public class BoardAddService implements BoardService {
 		} else {
 			out.println("<script>");
 			out.println("alert('삽입 실패')");
-			out.println("history.back()");  // history.go(-1)
+			out.println("history.back()");
 			out.println("</script>");
 		}
 		out.close();
