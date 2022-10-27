@@ -33,7 +33,7 @@
 					<tr>
 						<td>${board.boardNo}</td>
 						<td>${board.name}</td>
-						<td><a href="${contextPath}/board/detail.do?board_no=${board.boardNo}">${board.title}</a></td>
+						<td><a href="${contextPath}/board/detail.do?boardNo=${board.boardNo}">${board.title}</a></td>
 						<td>${board.createDate}</td>
 					</tr>
 				</c:forEach>

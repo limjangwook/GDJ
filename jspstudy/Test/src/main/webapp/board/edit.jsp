@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${board.board_no}번 게시글 수정</title>
+<title>${board.boardNo}번 게시글 수정</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
 
@@ -34,8 +34,8 @@
 	<div>
 		<form method="POST" action="${contextPath}/board/modify.do" id="frm_edit">
 			<div>
-				순번 : ${board.board_no}
-				<input type="hidden" name="board_no" value="${board.board_no}">
+				순번 : ${board.boardNo}
+				<input type="hidden" name="board_no" value="${board.boardNo}">
 			</div>
 			<div>
 				제목 : <input type="text" name="title" id="title" value="${board.title}">
@@ -43,9 +43,6 @@
 			<div>
 				내용<br>
 				<textarea name="content" id="content" rows="5" cols="30">${board.content}</textarea>
-			</div>
-			<div>
-				작성일 : ${board.create_date}
 			</div>
 			<div>
 				<input type="submit" value="수정">

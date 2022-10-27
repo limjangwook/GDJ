@@ -6,19 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${board.board_no}번 게시글</title>
+<title>${board.boardNo}번 게시글</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
 
 	$(document).ready(function(){
 		
 		$('#btn_edit').click(function(event){
-			location.href = '${contextPath}/board/edit.do?board_no=${board.board_no}';
+			location.href = '${contextPath}/board/edit.do?boardNo=${board.boardNo}';
 		});
 		
 		$('#btn_remove').click(function(event){
 			if(confirm('정말로 삭제하시겠습니까?')){
-				location.href = '${contextPath}/board/remove.do?board_no=${board.board_no}';
+				location.href = '${contextPath}/board/remove.do?boardNo=${board.boardNo}';
 			}
 		});
 		
@@ -33,7 +33,7 @@
 <body>
 
 	<div>
-		순번 : ${board.board_no}
+		순번 : ${board.boardNo}
 	</div>
 	<div>
 		작성자 : ${board.name}
