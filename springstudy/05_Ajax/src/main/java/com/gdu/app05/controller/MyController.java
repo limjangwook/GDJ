@@ -1,16 +1,17 @@
 package com.gdu.app05.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gdu.app05.service.MovieService;
+
 @Controller
 public class MyController {
 	
-	@GetMapping("/")
-	public String index() {
-		return "index";  // index.jsp로 forward
-	}
+	@Autowired
+	private MovieService movieService;
 	
 	@GetMapping("movie")
 	public String movie() {
@@ -18,6 +19,9 @@ public class MyController {
 	}
 	
 	@ResponseBody
-	@GetMapping
+	@GetMapping("movie/boxOfficeList")
+	public String boxOfficeList(String targetDt) {
+		return movieService.getBoxOffice(targetDt);
+	}
 
 }

@@ -26,17 +26,20 @@
 				dataType: 'json',
 				success: function(resData){
 					// 기존 목록 초기화
-					$(#boxOfficeList).empty();
+					$('#boxOfficeList').empty();
 					// 가져온 목록 나타내기
 					$.each(resData.boxOfficeResult.dailyBoxOfficeList, function(i, movie){
-						$('<ul>')
-						.append($('<li>').text(resData.rank))
-						.append($('<li>').text(resData.movieNm))
-						.append($('<li>').text(resData.audiCn))
-						.append($('<li>').text(resData.audiAcc))
+						$('<tr>')
+		                  .append($('<td>').text(movie.rank))
+		                  .append($('<td>').text(movie.movieNm))
+		                  .append($('<td>').text(movie.openDt))
+		                  .append($('<td>').text(movie.audiCnt))
+		                  .append($('<td>').text(movie.audiAcc))
+		                  .appendTo('#boxOfficeList');
+
 					});
 				}
-			})
+			});
 		});
 		
 	});
@@ -64,7 +67,7 @@
 					<td>누적관객수</td>
 				</tr>
 			</thead>
-			<tbody></tbody>
+			<tbody id="boxOfficeList"></tbody>
 		</table>
 	</div>
 
