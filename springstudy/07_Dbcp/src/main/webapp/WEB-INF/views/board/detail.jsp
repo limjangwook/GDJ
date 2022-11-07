@@ -31,7 +31,7 @@
 	   
 	   // 목록
 	   $('#btn_list').click(function(){
-		   location.href = '${contextPath}/brd/list'; 
+		   location.href = '${contextPath}/free/list'; 
 	   });
 	   
    });
