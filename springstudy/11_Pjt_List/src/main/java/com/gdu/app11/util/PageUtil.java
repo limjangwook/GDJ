@@ -51,9 +51,24 @@ public class PageUtil {
 		
 		StringBuilder sb = new StringBuilder();
 		
+		// 1. path에 파라미터가 없는 경우
+		// 		/emp/list
+		// 		/emp/list?page=1	(page 앞에 ?를 사용)
+		
+		// 2. path에 파라미터가 있는 경우
+		// 		/emp/search?column=EMPOLYEE_ID&query=150
+		// 		/emp/search?column=EMPOLYEE_ID&query=150&page=1  (page 앞에 &를 사용)
+		
+		if(path.contains("?")) {
+			path += "&";
+		} else {
+			path += "?";
+		}
+		sb.append("<div class=\"paging\">");
+		
 		// 이전블록 : 1block이 아니면 이전블록이 있다
 		if(beginPage != 1) {
-			sb.append("<a href=\"" + path + "?page=" + (beginPage-1) + "\">◀</a>");
+			sb.append("<a href=\"" + path + "page=" + (beginPage-1) + "\">◀</a>");
 		}
 		
 		// 페이지번호 : 현재 페이지는 링크가 없다
@@ -61,13 +76,13 @@ public class PageUtil {
 			if(p == page) {
 				sb.append("<a class="+"blind"+"  href=\"#none"+ p+ "\">" +p+ "</a>");
 			} else {
-				sb.append("<a href=\"" + path + "?page=" + p + "\">" + p + "</a>"); 
+				sb.append("<a href=\"" + path + "page=" + p + "\">" + p + "</a>"); 
 			}
 		}
 		
 		// 다음블록 : 마지막 블록이 아니면 다음블록이 있다
 		if(endPage != totalPage) {
-			sb.append("<a href=\"" + path + "?page=" + (endPage+1) + "\">▶</a>");
+			sb.append("<a href=\"" + path + "page=" + (endPage + 1) + "\">▶</a>");
 		}
 		
 		return sb.toString();

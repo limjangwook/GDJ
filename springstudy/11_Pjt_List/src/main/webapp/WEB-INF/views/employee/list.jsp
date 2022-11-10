@@ -45,9 +45,11 @@
 <script src="${contextPath}/resources/js/jquery-3.6.1.min.js"></script>
 <script>
 	$(document).ready(function(){
+		
 		// area1, area2 표시
 		// 초기 상태 : area1, area2 둘다 숨김
 		$('#area1, #area2').css('display', 'none');
+		
 		// column 선택에 따른 area1, area2 표시
 		$('#column').change(function(){
 			let combo = $(this);
@@ -61,6 +63,35 @@
 				$('#area2').css('display', 'none');
 			}
 		});
+		
+		// 자동 완성
+		$('#param').keyup(function(){
+			$('#auto_complete').empty();
+			if($(this).val() == ''){
+				return;
+			}
+			$.ajax({
+				/* 요청 */
+				type: 'get',
+				url: '${contextPath}/emp/autoComplete',
+				data: 'target=' + $('#target').val() + '&param=' + $(this).val(),
+				/* 응답 */
+				dataType: 'json',
+				success: function(resData){
+					if(resData.status == 200){
+						$.each(resData.list, function(i, emp){
+							$('#auto_complete')
+							.append($('<option>').val(emp[resData.target]));
+						});
+					}
+				}
+			});
+		});
+		
+		$('#btn_all').click(function() {
+	          location.href = '${contextPath}/emp/list';
+	    });
+		
 	});
 </script>
 </head>
@@ -91,6 +122,16 @@
 				<input type="button" value="전체사원조회" id="btn_all">
 			</span>
 		</form>
+	</div>
+
+	<div>
+		<select name="target" id="target">
+			<option value="FIRST_NAME">이름</option>
+			<option value="LAST_NAME">성</option>
+			<option value="EMAIL">이메일</option>
+		</select>
+		<input type="text" id="param" name="param" list="auto_complete">
+		<datalist id="auto_complete"></datalist>
 	</div>
 
 	<hr>
