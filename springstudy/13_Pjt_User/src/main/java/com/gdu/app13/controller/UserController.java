@@ -72,9 +72,11 @@ public class UserController {
 	@GetMapping("/user/login/form")
 	public String loginForm(HttpServletRequest request, Model model) {
 		
-		// 요철 헤더 referer :  이전 페이지의 주소가 저장
+		// 요청 헤더 referer : 이전 페이지의 주소가 저장
 		model.addAttribute("url", request.getHeader("referer"));  // 로그인 후 되돌아 갈 주소 url
+		
 		return "user/login";
+		
 	}
 	
 	@PostMapping("/user/login")
@@ -87,7 +89,8 @@ public class UserController {
 		request.getSession().invalidate();
 		return "redirect:/";
 	}
-
+	
+	
 	
 	
 	

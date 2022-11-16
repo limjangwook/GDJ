@@ -16,13 +16,13 @@
 		<a href="${contextPath}/user/agree">회원가입페이지</a><br>
 		<a href="${contextPath}/user/login/form">로그인페이지</a>
 	</c:if>
-	
+
 	<!-- 로그인이 된 상태 -->
 	<c:if test="${loginUser != null}">
 		<div>
 			<a href="${contextPath}/user/mypage">${loginUser.name}</a> 님 반갑습니다.
 		</div>
-		<a href="${contextPath}/user/logout">로그아웃</a><br>
+		<a href="${contextPath}/user/logout">로그아웃</a>
 		<a id="lnk_retire" href="${contextPath}/user/retire">회원탈퇴</a>
 		<script>
 			$('#lnk_retire').click(function(event){
@@ -33,6 +33,6 @@
 			});
 		</script>
 	</c:if>
-
+	
 </body>
 </html>
