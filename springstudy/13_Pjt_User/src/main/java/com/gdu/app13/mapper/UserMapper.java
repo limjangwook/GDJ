@@ -15,12 +15,13 @@ public interface UserMapper {
 	// public UserDTO selectUserByEmail(String email);
 	// public UserDTO selectUserByIdPw(UserDTO user);
 	public UserDTO selectUserByMap(Map<String, Object> map);
-	
 	public RetireUserDTO selectRetireUserById(String id);
 	public int insertUser(UserDTO user);
 	public int updateAccessLog(String id);
 	public int insertAccessLog(String id);
 	public int deleteUser(int userNo);
 	public int insertRetireUser(RetireUserDTO retireUser);
+	public int updateSessionInfo(UserDTO user);
+	public int updateUserPassword(UserDTO user);
 	
 }

@@ -8,6 +8,45 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${contextPath}/resources/js/jquery-3.6.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+	
+	$(function(){
+		fn_login();
+		fn_displayRememberId();
+	});
+	
+	function fn_login(){
+		
+		$('#frm_login').submit(function(event){
+			
+			if($('#id').val() == '' || $('#pw').val() == ''){
+				alret('아이디와 패스워드를 모두 입렵하세요.');
+				event.preventDefault();
+				return;
+			}
+			
+			if($('#rememberId').is(':checked')){
+				$.cookie('rememberId', $('#id').val());
+			} else {
+				$.cookie('rememberId', '');
+			}
+		});
+	}
+	
+	function fn_displayRememberId() {
+		
+		let rememberId = $.cookie('rememberId');
+		if(rememberId == ''){
+			$('#id').val('');
+			$('#rememberId').prop('checked', false);
+		} else {
+			$('#id').val(rememberId);
+			$('#rememberId').prop('checked', true);
+		}
+	}
+	
+</script>
 </head>
 <body>
 
@@ -47,8 +86,8 @@
 		</form>
 			
 		<div>
-			<a href="${contextPath}/member/findId">아이디 찾기</a> | 
-			<a href="${contextPath}/member/findPw">비밀번호 찾기</a>
+			<a href="${contextPath}/user/findId">아이디 찾기</a> | 
+			<a href="${contextPath}/user/findPw">비밀번호 찾기</a>
 		</div>
 	
 	</div>
