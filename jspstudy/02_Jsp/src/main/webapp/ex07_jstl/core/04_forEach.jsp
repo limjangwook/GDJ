@@ -43,8 +43,8 @@
 	
 	<%-- 4. 배열 --%>
 	<%
-		String[] menus = {"김밥", "떡볶이", "순대"};
-		pageContext.setAttribute("menus", menus);
+	String[] menus = {"김밥", "떡볶이", "순대"};
+			pageContext.setAttribute("menus", menus);
 	%>
 	<c:forEach var="menu" items="${menus}" varStatus="vs">
 		인덱스 : ${vs.index}, 순번 : ${vs.count}, 배열요소 : ${menu}<br>

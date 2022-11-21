@@ -11,28 +11,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet("/FormServlet")
+
+
 public class FormServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		// 요청
 		request.setCharacterEncoding("UTF-8");
 		
-		// 변수 (파라미터)
+		// 변수(파라미터)
+		
 		String id = request.getParameter("id");
 		if(id.isEmpty()) {
-			id = "빈아이디";
+			id = "빈 아이디";
 		}
+		
 		String pwd = request.getParameter("pwd");
 		if(pwd.isEmpty()) {
 			pwd = "빈 비밀번호";
 		}
+		
 		String gender = request.getParameter("gender");
 		if(gender == null) {
 			gender = "빈 성별";
 		}
+		
 		String city = request.getParameter("city");
 		if(city.isEmpty()) {
 			city = "빈 도시";
@@ -44,10 +52,10 @@ public class FormServlet extends HttpServlet {
 			phone[0] = "빈 전화1";
 		}
 		if(phone[1].isEmpty()) {
-			phone[1] = "빈 전화 2";
+			phone[1] = "빈 전화2";
 		}
 		if(phone[2].isEmpty()) {
-			phone[2] = "빈 전화 3";
+			phone[2] = "빈 전화3";
 		}
 		String strPhone = phone[0] + "-" + phone[1] + "-" + phone[2];
 		
@@ -58,7 +66,7 @@ public class FormServlet extends HttpServlet {
 		}
 		
 		// 연습(이메일)
-		String emailId = request.getParameter("emial_id");
+		String emailId = request.getParameter("email_id");
 		String domain = request.getParameter("domain");
 		
 		// 응답
@@ -69,7 +77,7 @@ public class FormServlet extends HttpServlet {
 		out.println("<h3>비밀번호 : " + pwd + "</h3>");
 		out.println("<h3>성별 : " + gender + "</h3>");
 		out.println("<h3>도시 : " + city + "</h3>");
-		out.println("<h3>전화번호 : " + strPhone + "</h3>");
+		out.println("<h3>연락처 : " + strPhone + "</h3>");
 		out.println("<h3>동의여부 : " + Arrays.toString(agree) + "</h3>");
 		out.println("<h3>이메일 : " + emailId + "@" + domain + "</h3>");
 		List<String> list = Arrays.asList(agree);

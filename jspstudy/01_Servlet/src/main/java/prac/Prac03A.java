@@ -19,46 +19,45 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Prac03A extends HttpServlet {
 
-   private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 요청
+		request.setCharacterEncoding("UTF-8");
+		
+		String from = request.getParameter("from");
+		String to = request.getParameter("to");
+		String content = request.getParameter("content");
+		
+		// 파일명
+		String filename = new Date(System.currentTimeMillis()) + "-" + from + ".txt";
+		
+		// 디렉터리 생성
+		File dir = new File(request.getServletContext().getRealPath("storage"));
+		if(dir.exists() == false) {
+			dir.mkdirs();
+		}
+		
+		// 파일 객체
+		File file = new File(dir, filename);
+		
+		// 문자 출력 스트림 생성
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+		
+		// 출력
+		bw.write("To. " + to + "\n");
+		bw.write(content + "\n");
+		bw.write("From. " + from + "\n");
+		bw.close();
+		
+		// 이동
+		response.sendRedirect("/01_Servlet/Prac03B?filename=" + URLEncoder.encode(filename, "UTF-8"));
+		
+	}
 
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-      // 요청
-      request.setCharacterEncoding("UTF-8");
-      
-      String from = request.getParameter("from");
-      String to = request.getParameter("To");
-      String content = request.getParameter("content");
-      
-      // 파일명
-      String filename = new Date(System.currentTimeMillis()) + "-" + from + ".txt";
-      
-      // 파일객체
-      File dir = new File(request.getServletContext().getRealPath("storage"));
-      if(dir.exists() == false) {
-         dir.mkdirs();
-      }
-     
-      // 파일객체
-      File file = new File(dir, filename);
-     
-      // 문자 풀력 스트림 생성
-      BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-
-      
-      // 출력
-      bw.write("To. " + to + "\n");
-      bw.write(content + "\n");
-      bw.write("From. " + from + "\n");
-      bw.close();
-      
-      // 이동
-      response.sendRedirect("/01_Servlet/Prac03B?filename=" + URLEncoder.encode(filename, "UTF-8"));
-   
-   }
-
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      doGet(request, response);
-   }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }

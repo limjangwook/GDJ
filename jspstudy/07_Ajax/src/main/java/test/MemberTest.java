@@ -31,7 +31,7 @@ public class MemberTest {
 			}
 			
 			JSONObject obj = new JSONObject(sb.toString());
-			assertEquals(3, obj.getInt("count"));
+			assertEquals(4, obj.getInt("count"));
 			
 			reader.close();
 			con.disconnect();
@@ -39,6 +39,7 @@ public class MemberTest {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

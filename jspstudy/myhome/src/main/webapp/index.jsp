@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<c:if test="${login == null}">
+
+	<c:if test="${login == null}">	
 		<div>
 			<form method="post" action="${contextPath}/member/login.me">
 				<div>
@@ -26,12 +26,17 @@
 		</div>
 	</c:if>
 	
-	<c:if test="${login != null}">
+	<c:if test="${login != null }">
 		<div>
-			${login.name} 왔는가 용사여
+			${login.name}님 어세오세요
 			<input type="button" value="로그아웃" onclick="location.href='${contextPath}/member/logout.me';">
 		</div>
 	</c:if>
 
 </body>
 </html>
+
+
+
+
+

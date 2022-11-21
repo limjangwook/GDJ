@@ -17,12 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-
 public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 
 	// field
-	private final String CLIENT_ID = "hH2OXbYPtntBQJfT0oQF";
-	private final String CLIENT_SECRET = "epWavnnFZ9";
+	private final String CLIENT_ID = "ZuA2Hxw8DnfFAdWjRSk4";
+	private final String CLIENT_SECRET = "aSF2zE3ZRQ";
 	
 	@Override
 	public String getCaptchaKey() {
@@ -34,7 +33,7 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 		String key = null;
 		
 		try {
-			
+
 			// apiURL 접속
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -69,22 +68,23 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 			reader.close();
 			con.disconnect();
 			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return key;
+		
 	}
 
 	@Override
 	public Map<String, String> getCaptchaImage(HttpServletRequest request, String key) {
-		
+
 		Map<String, String> map = new HashMap<String, String>();
 		
 		String apiURL = "https://openapi.naver.com/v1/captcha/ncaptcha.bin?key=" + key;
-		
-			try {
-			
+
+		try {
+
 			// apiURL 접속
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -100,16 +100,16 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 			
 			// 응답이 성공하면 이미지(JPG)가 응답
 			if(con.getResponseCode() == 200) {  // 200 : HttpURLConnection.HTTP_OK
-				// 저장할 캡차 이미지 경로
+				// 저장할 캡차이미지 경로
 				String dirname = "ncaptcha";
 				String realPath = request.getServletContext().getRealPath(dirname);
 				File dir = new File(realPath);
 				if(dir.exists() == false) {
 					dir.mkdirs();
 				}
-				// 저장할 캡차 이미지 이름
+				// 저장할 캡차이미지 이름
 				String filename = System.currentTimeMillis() + ".jpg";
-				// 저장할 캡차 이미지 객체 생성
+				// 저장할 캡차이미지 객체 생성
 				File file = new File(dir, filename);
 				// 네이버API로부터 정보를 읽어서(in) 서버경로에 저장(out)
 				BufferedInputStream in = new BufferedInputStream(con.getInputStream());
@@ -128,7 +128,6 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 				out.close();
 				in.close();
 			} 
-			
 			// 응답이 실패하면 텍스트 형식으로 응답
 			else {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
@@ -137,7 +136,7 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 				while((line = reader.readLine()) != null) {
 					sb.append(line);
 				}
-				System.out.println("응답 실패 사유");
+				System.out.println("<<응답 실패 사유>>");
 				System.out.println(sb.toString());
 				reader.close();
 			}
@@ -145,14 +144,14 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 			// 자원 반납
 			con.disconnect();
 			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
+		
 		return map;
-
+		
 	}
-	
+
 	@Override
 	public void refreshCaptcha(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -160,12 +159,12 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 		response.setContentType("application/json");
 		
 		// 응답 데이터
-		// 캡차키 + 캡차이미지 새로 요청
+		// 캡차키 + 캡차이미지 새로 요청해서 JSON 생성
 		/*
 			{
-				"dirname": "ncaptcah",
-				"filename": "11111111111.jpg,
-				"key": "dlwldnQKrktkfl"
+				"dirname": "ncaptcha",
+				"filename": "11111111111.jpg",
+				"key": "asdfghjklqwertyu"
 			}
 		*/
 		String key = getCaptchaKey();
@@ -182,10 +181,10 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 		}
 		
 	}
-
+	
 	@Override
 	public boolean validateUserInput(HttpServletRequest request) {
-		
+
 		// 요청 파라미터(캡차키 + 사용자 입력값)
 		String key = request.getParameter("key");
 		String value = request.getParameter("value");
@@ -197,7 +196,7 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 		String apiURL = "https://openapi.naver.com/v1/captcha/nkey?code=1&key=" + key + "&value=" + value;
 		
 		try {
-			
+
 			// apiURL 접속
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -232,12 +231,12 @@ public class NaverCaptchaServiceImpl implements NaverCaptchaService {
 			reader.close();
 			con.disconnect();
 			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return result;
-
+		
 	}
 
 }

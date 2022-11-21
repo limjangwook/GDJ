@@ -29,13 +29,14 @@ public class BoardModifyService implements BoardService {
 		int result = BoardDao.getInstance().updateBoard(board);
 		
 		// 수정 결과는 콘솔에서 확인
-		System.out.println("수정 결과 : " + result);;
+		System.out.println("수정 결과 : " + result);
 		
 		// 어디로 / 어떻게
 		ActionForward af = new ActionForward();
 		af.setView(request.getContextPath() + "/board/detail.do?board_no=" + board_no);  // Redirect할때는 매핑으로 이동
-		af.setRedirect(true);											      			 // UPDATE 이후에는 Redirect	
+		af.setRedirect(true);                                                            // UPDATE 이후에는 Redirect
 		return af;
+		
 	}
 
 }

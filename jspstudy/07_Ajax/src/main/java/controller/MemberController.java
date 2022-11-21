@@ -33,13 +33,13 @@ public class MemberController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String urlMapping = requestURI.substring(contextPath.length());
 		
-		// StudentService 객체
+		// MemberService 객체
 		MemberService service = null;
 		
 		// ActionForward 객체
 		ActionForward af = null;
 		
-		// 요청엘 따른 Service 선택
+		// 요청에 따른 Service 선택
 		switch(urlMapping) {
 		case "/member/manage.do":
 			af = new ActionForward("/member/manage.jsp", false);

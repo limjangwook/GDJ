@@ -10,22 +10,22 @@
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
 
-	$(document).ready(function() {
-	    
-	    $('#frm_edit').submit(function(event) {
-	       if($('#title').val() == '') { 
-	          alert('제목은 필수입니다.');
-	          $('#title').focus();
-	          event.preventDefault();
-	          return;
-	       }
-	    });
-	    
-	    $('#btn_list').click(function(event) {
-	       location.href = '${contextPath}/board/list.do';
-	    });
-	    
-	 });
+	$(document).ready(function(){
+		
+		$('#frm_edit').submit(function(event){
+			if($('#title').val() == ''){
+				alert('제목은 필수입니다.');
+				$('#title').focus();
+				event.preventDefault();
+				return;
+			}
+		});
+		
+		$('#btn_list').click(function(event){
+			location.href = '${contextPath}/board/list.do';
+		});
+		
+	});
 
 </script>
 </head>
@@ -45,11 +45,11 @@
 			<input type="hidden" name="boardNo" value="${board.boardNo}">
 			<div>
 				<input type="submit" value="수정완료">
-				<input type="reset" value="적성취소">
+				<input type="reset" value="작성취소">
 				<input type="button" value="목록" id="btn_list">
 			</div>
 		</form>
 	</div>
-
+	
 </body>
 </html>

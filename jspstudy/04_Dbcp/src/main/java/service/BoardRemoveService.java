@@ -25,9 +25,10 @@ public class BoardRemoveService implements BoardService {
 		
 		// 어디로 / 어떻게
 		ActionForward af = new ActionForward();
-		af.setView(request.getContextPath() + "/board/list.do");    // Redirect할때는 매핑으로 이동
-		af.setRedirect(true);										// DELETE 이후에는 Redirect
+		af.setView(request.getContextPath() + "/board/list.do");  // Redirect할때는 매핑으로 이동
+		af.setRedirect(true);                                     // DELETE 이후에는 Redirect
 		return af;
+		
 	}
 
 }

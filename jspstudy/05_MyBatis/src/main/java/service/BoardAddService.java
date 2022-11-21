@@ -12,7 +12,7 @@ import repository.BoardDao;
 public class BoardAddService implements BoardService {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// 요청 파라미터
 		String title = request.getParameter("title");
@@ -27,7 +27,7 @@ public class BoardAddService implements BoardService {
 		int result = BoardDao.getInstance().insertBoard(board);
 		
 		// 삽입 성공 / 실패
-		PrintWriter out = reponse.getWriter();
+		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.println("<script>");
 			out.println("alert('게시글이 등록되었습니다.')");
@@ -35,13 +35,14 @@ public class BoardAddService implements BoardService {
 			out.println("</script>");
 		} else {
 			out.println("<script>");
-			out.println("alert('게시글이 등록이 실패했습니다.')");
+			out.println("alert('게시글 등록이 실패했습니다.')");
 			out.println("history.back()");  // history.go(-1)
 			out.println("</script>");
 		}
-		out.close();
-
-		return null;
+		out.close();		
+		
+		return null;  // 컨트롤러로 null을 반환하면 컨트롤러는 리다이렉트&포워드 모두 수행하지 않음
+		
 	}
 
 }

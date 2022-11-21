@@ -9,6 +9,7 @@
 <title>신규학생등록</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
+
 	$(document).ready(function(){
 		
 		$('#frm_write').submit(function(event){

@@ -25,6 +25,7 @@ public class BoardListService implements BoardService {
 		af.setView("/board/list.jsp");  // webapp/board/list.jsp를 의미함
 		af.setRedirect(false);  // 포워드
 		return af;
+		
 	}
 
 }

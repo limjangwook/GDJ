@@ -14,10 +14,10 @@
 	</select>
 	
 	<!-- 2. 회원수 -->
-   <select id="selectAllMembersCount" resultType="int">
-      SELECT COUNT(*)
-        FROM MEMBER
-   </select>
+	<select id="selectAllMembersCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM MEMBER
+	</select>
 	
 	<!-- 3. 회원상세 -->
 	<select id="selectMemberByNo" parameterType="int" resultType="Member">
@@ -40,7 +40,7 @@
 		   SET NAME = #{name}
 		     , GENDER = #{gender}
 		     , GRADE = #{grade}
-		     , ADDRESS= #{address}
+		     , ADDRESS = #{address}
 		 WHERE ID = #{id}
 	</update>
 	

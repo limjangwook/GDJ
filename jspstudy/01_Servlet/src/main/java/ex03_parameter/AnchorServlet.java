@@ -11,31 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/AnchorServlet")
+
+
 public class AnchorServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
        
-    public AnchorServlet() {
-        super();
-    }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// 요청
 		request.setCharacterEncoding("UTF-8");
 		
 		// 요청 파라미터 a, b
-		int a = 0;
-		int b = 0;
+		int a = 0, b = 0;
 		String strA = request.getParameter("a");
-		String strB = request.getParameter("b");
-		
 		if(strA != null) {
-			a = Integer.parseInt(strA);			
+			a = Integer.parseInt(strA);
 		}
+		String strB = request.getParameter("b");
 		if(strB != null) {
-			b = Integer.parseInt(strB);			
+			b = Integer.parseInt(strB);
 		}
-		int c = a+b;
 		
 		// 응답
 		response.setContentType("text/html; charset=UTF-8");
@@ -45,12 +41,9 @@ public class AnchorServlet extends HttpServlet {
 		out.flush();
 		out.close();
 		
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

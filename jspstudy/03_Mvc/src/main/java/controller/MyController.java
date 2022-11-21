@@ -14,7 +14,7 @@ import service.MyService;
 import service.NowService;
 import service.TodayService;
 
-// @WebServlet({"/today.do", "/now.do"})
+// @WebServlet({"/today.do", "/now.do", "/adder.do"})
 @WebServlet("*.do")  // .do로 끝나는 모든 요청
 
 public class MyController extends HttpServlet {
@@ -49,14 +49,14 @@ public class MyController extends HttpServlet {
 		case "now.do":
 			myService = new NowService();
 			break;
+		case "adder.do":
+			myService = new AdderService();
+			break;
 		// 비즈니스 로직이 필요 없는 단순이동의 경우
 		case "input.do":
 			actionForward = new ActionForward();
 			actionForward.setView("views/input.jsp");
 			break;
-		case "adder.do" :
-	         myService = new AdderService();
-	         break;
 		}
 		
 		// 선택한 Model의 실행
@@ -71,7 +71,7 @@ public class MyController extends HttpServlet {
 			if(actionForward.isRedirect()) {
 				response.sendRedirect(actionForward.getView());
 			} else {
-				request.getRequestDispatcher(actionForward.getView()).forward(request, response);				
+				request.getRequestDispatcher(actionForward.getView()).forward(request, response);
 			}
 		}
 		

@@ -11,13 +11,13 @@ import repository.BoardDao;
 public class BoardEditService implements BoardService {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// 요청 파라미터
 		Optional<String> opt = Optional.ofNullable(request.getParameter("boardNo"));
 		int boardNo = Integer.parseInt(opt.orElse("0"));
 		
-		// request에 boardNo에 해당하는 Board baord 저장하기
+		// request에 boardNo에 해당하는 Board board 저장하기
 		request.setAttribute("board", BoardDao.getInstance().selectBoardByNo(boardNo));
 		
 		// board/edit.jsp로 포워딩
@@ -25,6 +25,7 @@ public class BoardEditService implements BoardService {
 		af.setView("/board/edit.jsp");
 		af.setRedirect(false);
 		return af;
+		
 	}
 
 }
