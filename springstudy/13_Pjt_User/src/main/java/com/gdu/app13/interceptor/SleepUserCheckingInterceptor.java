@@ -11,6 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import com.gdu.app13.domain.SleepUserDTO;
 import com.gdu.app13.service.UserService;
 
+
 @Component
 public class SleepUserCheckingInterceptor implements HandlerInterceptor {
 
@@ -35,10 +36,12 @@ public class SleepUserCheckingInterceptor implements HandlerInterceptor {
 		if(sleepUser != null) {
 			response.sendRedirect(request.getContextPath() + "/user/sleep/display");
 			return false;
-		} 
+		}
 		// 휴면회원이 아니면 로그인(/user/login)을 진행함
 		else {
 			return true;
 		}
+		
 	}
+	
 }
