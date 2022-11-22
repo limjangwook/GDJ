@@ -45,7 +45,7 @@
 				<input type="button" value="삭제" class="btn_attach_remove" data-upload_no="${upload.uploadNo}" data-attach_no="${attach.attachNo}">
 			</div>
 		</c:forEach>
-	</div>
+	</div> 
 	
 </body>
 </html>
