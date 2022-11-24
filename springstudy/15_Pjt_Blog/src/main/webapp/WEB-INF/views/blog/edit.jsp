@@ -5,7 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <jsp:include page="../layout/header.jsp">
-	<jsp:param value="블로그작성" name="title"/>
+	<jsp:param value="블로그수정" name="title"/>
 </jsp:include>
 
 <script>
@@ -35,38 +35,22 @@
 			    ['insert', ['link', 'picture', 'video']]
 			],
 			callbacks: {
-				// summernote 편집기에 이미지를 로드할 때 이미지는 function의 매개변수 files로 전달됨 
 				onImageUpload: function(files){
-					// 이미지를 ajax를 이용해서 서버로 보낼 때 가상 form 데이터 사용 
 					var formData = new FormData();
-					formData.append('file', files[0]);  // 파라미터 file, summernote 편집기에 추가된 이미지가 files[0]임
-					// 이미지를 HDD에 저장하고 경로를 받아오는 ajax
+					formData.append('file', files[0]);
 					$.ajax({
 						type: 'post',
 						url: getContextPath() + '/blog/uploadImage',
 						data: formData,
-						contentType: false,  // ajax 이미지 첨부용
-						processData: false,  // ajax 이미지 첨부용
-						dataType: 'json',    // HDD에 저장된 이미지의 경로를 json으로 받아옴
+						contentType: false,
+						processData: false,
+						dataType: 'json',
 						success: function(resData){
-							
 							$('#content').summernote('insertImage', resData.src);
-							
-							/*
-								src=${contextPath}/load/image/aaa.jpg 값이 넘어온 경우
-								summernote는
-								<img src="${contextPath}/load/image/aaa.jpg"> 태그를 만든다.
-								
-								mapping=${contextPath}/load/image/aaa.jpg인 파일의 실제 위치는
-								location=C:\\upload\\aaa.jpg이다.
-								
-								스프링에서 정적 자원 표시하는 방법은 servlet-context.xml에 있다.
-								이미지(정적 자원)의 mapping과 location을 servlet-context.xml에 작성해야 한다.
-							*/
 						}
-					});  // ajax
-				}  // onImageUpload
-			}  // callbacks
+					});
+				}
+			}
 		});
 		
 		// 목록
@@ -75,11 +59,11 @@
 		});
 		
 		// 서브밋
-		$('#frm_write').submit(function(event){
+		$('#frm_edit').submit(function(event){
 			if($('#title').val() == ''){
 				alert('제목은 필수입니다.');
-				event.preventDefault();  // 서브밋 취소
-				return;  // 더 이상 코드 실행할 필요 없음
+				event.preventDefault();
+				return;
 			}
 		});
 		
@@ -92,21 +76,23 @@
 
 	<h1>작성 화면</h1>
 	
-	<form id="frm_write" action="${contextPath}/blog/add" method="post">
+	<form id="frm_edit" action="${contextPath}/blog/modify" method="post">
+	
+		<input type="hidden" name="blogNo" value="${blog.blogNo}">
 	
 		<div>
 			<label for="title">제목</label>
-			<input type="text" name="title" id="title">
+			<input type="text" name="title" id="title" value="${blog.title}">
 		</div>
 		
 		<div>
 			<label for="content">내용</label>
-			<textarea name="content" id="content"></textarea>				
+			<textarea name="content" id="content">${blog.content}</textarea>				
 		</div>
 		
 		<div>
-			<button>작성완료</button>
-			<input type="reset" value="입력초기화">
+			<button>수정완료</button>
+			<input type="reset" value="작성초기화">
 			<input type="button" value="목록" id="btn_list">
 		</div>
 		
