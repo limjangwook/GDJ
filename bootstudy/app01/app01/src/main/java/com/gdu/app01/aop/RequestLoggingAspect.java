@@ -22,14 +22,14 @@ public class RequestLoggingAspect {
 	private static final Logger LOG = LoggerFactory.getLogger(RequestLoggingAspect.class);
 	
 	// 포인트컷 설정
-	@Pointcut("within(com.gdu.app10.controller..*)")  // 컨트롤러의 모든 메소드를 포인트컷으로 지정하겠다.
+	@Pointcut("within(com.gdu.app01.controller..*)")  // 컨트롤러의 모든 메소드를 포인트컷으로 지정하겠다.
 													  // 컨트롤러의 모든 메소드에서 어드바이스(콘솔에 로그 찍기)가 동작한다.
 	public void setPointCut() {	}  // 오직 포인트컷 대상을 결정하기 위한 메소드(이름 :  아무거나, 본문 : 없음)
 	
 	// 어드바이스 설정
 	// 어드바이스 실행 시점
 	// @Before, @After, @AfterReturning, @AfterThrowing, @Around
-	@Around("com.gdu.app10.aop.RequestLoggingAspect.setPointCut()")  // setPointCut() 메소드에 설정된 포인트컷에서 동작하는 어드바이스
+	@Around("com.gdu.app01.aop.RequestLoggingAspect.setPointCut()")  // setPointCut() 메소드에 설정된 포인트컷에서 동작하는 어드바이스
 	public Object executeLogging(ProceedingJoinPoint joinPoint) throws Throwable {  //@Around는 반드시 ProceedingJoinPoint joinPoint 선언해야 함
 		
 		// HttpServletRequest를 사용하는 방법
