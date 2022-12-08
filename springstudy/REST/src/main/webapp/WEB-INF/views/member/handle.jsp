@@ -12,6 +12,10 @@
 	
 	$(function(){
 		fn_add();
+		fn_init();
+		fn_list();
+		fn_detail();
+		fn_modify();
 	});
 	
 	function fn_add(){
@@ -33,11 +37,84 @@
 				/* 응답 */
 				dataType: 'json',
 				success: function(resData){
-					
+					if(resData.insertResult > 0) {
+						alert('회원이 등록되었습니다.');
+						fn_list();
+						fn_init();
+					} else {
+						alert('회원이 등록되지 않았습니다.');
+					}
 				},
 				error: function(jqXHR){
-					
+					alert('에러코드(' + jqXHR.status + ') ' + jqXHR.responseText);
 				}
+			});
+		});
+	}
+	
+	function fn_init(){
+		$('#id').val('').prop('readonly', false);
+		$('#name').val('');
+		$(':radio[name=gender]').prop('checked', false);
+		$('#address').val('');
+	}
+	
+	// 전역변수
+	var page = 1;
+	
+	function fn_list(){
+		$.ajax({
+			type: 'get',
+			url: '${contextPath}/members/page/' + page,
+			dataType: 'json',
+			success: function(resData){
+				$('#member_list').empty();
+				$.each(resData.memberList, function(i, member){
+					var tr = '<tr>';
+					tr += '<td><input type="checkbox" class="check_one" value="'+ member.memberNo +'"></td>';
+					tr += '<td>' + member.id + '</td>';
+					tr += '<td>' + member.name + '</td>';
+					tr += '<td>' + (member.gender == 'M' ? '남자' : '여자') + '</td>';
+					tr += '<td>' + member.address + '</td>';
+					tr += '<td><input type="button" value="조회" class="btn_detail" data-member_no="'+ member.memberNo +'"></td>';
+					tr += '</tr>';
+					$('#member_list').append(tr);
+				});
+				
+			}
+		});
+	}
+	
+	function fn_detail(){
+		$(document).on('click', '.btn_detail', function(){
+			$.ajax({
+				type: 'get',
+				url: '${contextPath}/members/' + $(this).data('member_no'),
+				dataType: 'json',
+				success: function(resData){
+					let member = resData.member;
+					if(resData.member == null){
+						alert('해당 회원을 찾을 수 없습니다.');
+					} else {
+						$('#memberNo').val(member.memberNo);
+						$('#id').val(member.id).prop('readonly', true);
+						$('#name').val(member.name);
+						$(':radio[name=gender][value=' + member.gender + ']').prop('checked', true);
+						$('#address').val(member.address);
+					}
+				}
+			});
+		});
+	}
+	
+	function fn_modify(){
+		$('#btn_modify').click(function(){
+			// 수정할 회원정보를 JSON으로 만들기
+			let member = JSON.stringify({
+				memberNo: $('#memberNo').val(),
+				name: $('#name').val(),
+				gender: $(':radio[name=gender]:checked').val(),
+				address: $('#address').val()
 			});
 		});
 	}
@@ -48,6 +125,7 @@
 
 	<h1>회원 관리</h1>
 	<div>
+		<input type="hidden" id="memberNo">
 		<div>
 			<label for="id">
 				아이디 <input type="text" id="id">
@@ -79,7 +157,7 @@
 			</label>
 		</div>
 		<div>
-			<input type="button" value="초기화" id="btn_init">
+			<input type="button" value="초기화" onclick="fn_init()">
 			<input type="button" value="등록하기" id="btn_add">
 			<input type="button" value="수정하기" id="btn_modify">
 		</div>
